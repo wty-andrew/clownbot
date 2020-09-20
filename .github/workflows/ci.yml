@@ -1,0 +1,17 @@
+name: ci
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+
+env:
+  IMAGE_NAME: clownbot
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker build -t $IMAGE_NAME .
+      - run: docker run --rm $IMAGE_NAME /bin/bash -c "catkin_make run_tests && catkin_test_results"

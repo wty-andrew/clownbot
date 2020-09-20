@@ -1,0 +1,15 @@
+Dockerfile
+.dockerignore
+
+.git
+.gitignore
+
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache
+
+*.fasl
+
+.vscode
