@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>clownbot</name>
+  <version>0.0.0</version>
+  <description>The clownbot package</description>
+
+  <maintainer email="wty.andrew@gmail.com">Andrew</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>
