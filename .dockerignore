@@ -13,3 +13,9 @@ __pycache__
 *.fasl
 
 .vscode
+
+.github/
+
+README.md
+
+website/
