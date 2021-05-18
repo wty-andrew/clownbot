@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{66:function(e,n,t){"use strict";t.r(n);var c=t(0),o=t.n(c),a=t(77),r=t(74);n.default=function(){return o.a.createElement(a.Redirect,{to:Object(r.a)("/docs")})}}}]);

@@ -1,0 +1,1 @@
+(self.webpackChunkclownbot_website=self.webpackChunkclownbot_website||[]).push([[195],{2841:function(e,t,n){"use strict";n.r(t);var c=n(7294),o=n(5977),s=n(4996);t.default=function(){return c.createElement(o.l_,{to:(0,s.Z)("/docs")})}}}]);

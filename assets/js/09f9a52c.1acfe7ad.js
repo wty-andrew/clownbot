@@ -1,0 +1,1 @@
+(self.webpackChunkclownbot_website=self.webpackChunkclownbot_website||[]).push([[199],{6353:function(e){"use strict";e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Testing Setup","permalink":"/clownbot/blog/2020/05/10/testing-setup"}]}')}}]);

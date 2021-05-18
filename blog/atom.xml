@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://wty-andrew.github.io/blog</id>
+    <title>Clownbot Blog</title>
+    <updated>2020-05-10T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://wty-andrew.github.io/blog"/>
+    <subtitle>Clownbot Blog</subtitle>
+    <icon>https://wty-andrew.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Testing Setup]]></title>
+        <id>Testing Setup</id>
+        <link href="https://wty-andrew.github.io/clownbot/blog/2020/05/10/testing-setup"/>
+        <updated>2020-05-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[It seems the roslisptesting package mentioned in ros wiki no longer exist anymore. However, the wiki page provide detailed enough information so we can roll our own solution, here are some notes taken while trying to replicate the functionality.]]></summary>
+    </entry>
+</feed>

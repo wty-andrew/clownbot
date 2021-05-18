@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Clownbot Blog</title>
+        <link>https://wty-andrew.github.io/blog</link>
+        <description>Clownbot Blog</description>
+        <lastBuildDate>Sun, 10 May 2020 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Testing Setup]]></title>
+            <link>https://wty-andrew.github.io/clownbot/blog/2020/05/10/testing-setup</link>
+            <guid>Testing Setup</guid>
+            <pubDate>Sun, 10 May 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[It seems the roslisptesting package mentioned in ros wiki no longer exist anymore. However, the wiki page provide detailed enough information so we can roll our own solution, here are some notes taken while trying to replicate the functionality.]]></description>
+        </item>
+    </channel>
+</rss>
