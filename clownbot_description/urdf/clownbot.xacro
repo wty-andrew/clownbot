@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="clownbot">
+  <xacro:arg name="cmd_topic" default="/cmd_vel"/>
+  <xacro:arg name="odom_topic" default="/odom"/>
+  <xacro:arg name="odom_frame" default="odom"/>
+
   <xacro:include filename="$(find clownbot_description)/urdf/common.xacro"/>
   <xacro:include filename="$(find clownbot_description)/urdf/base/base.xacro"/>
   <xacro:include filename="$(find clownbot_description)/urdf/wheels/wheel.xacro"/>
@@ -30,4 +34,27 @@
   <xacro:caster name="back_caster" parent="base_link">
     <origin xyz="${-1 * base_to_caster_offset_x} 0 ${-1 * base_to_caster_offset_z}" rpy="0 0 0"/>
   </xacro:caster>
+
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <updateRate>20</updateRate>
+      <leftJoint>base_link_to_left_wheel</leftJoint>
+      <rightJoint>base_link_to_right_wheel</rightJoint>
+      <wheelSeparation>${2 * base_to_wheel_offset_y}</wheelSeparation>
+      <wheelDiameter>${2 * wheel_radius}</wheelDiameter>
+      <wheelAcceleration>1.0</wheelAcceleration>
+      <wheelTorque>20</wheelTorque>
+      <commandTopic>$(arg cmd_topic)</commandTopic>
+      <odometryTopic>$(arg odom_topic)</odometryTopic>
+      <odometryFrame>$(arg odom_frame)</odometryFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <odometrySource>world</odometrySource>
+      <publishWheelTF>false</publishWheelTF>
+      <publishOdomTF>true</publishOdomTF>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>false</publishWheelJointState>
+      <legacyMode>false</legacyMode>
+      <rosDebugLevel>warn</rosDebugLevel>
+    </plugin>
+  </gazebo>
 </robot>

@@ -24,6 +24,13 @@
 
       <xacro:cylinder_inertia m="${wheel_mass}" r="${wheel_radius}" h="${wheel_width}"/>
     </link>
+
+    <gazebo reference="${name}">
+      <mu1>100000.0</mu1>
+      <mu2>100000.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+    </gazebo>
   </xacro:macro>
 
   <xacro:macro name="left_wheel" params="name parent *origin">

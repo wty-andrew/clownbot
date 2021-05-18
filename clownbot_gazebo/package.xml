@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>clownbot_gazebo</name>
+  <version>0.0.0</version>
+  <description>The clownbot_gazebo package</description>
+
+  <maintainer email="wty.andrew@gmail.com">Andrew</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>gazebo_plugins</build_depend>
+  <build_depend>gazebo_ros</build_depend>
+  <build_export_depend>gazebo_plugins</build_export_depend>
+  <build_export_depend>gazebo_ros</build_export_depend>
+  <exec_depend>clownbot_description</exec_depend>
+  <exec_depend>gazebo_plugins</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+</package>
