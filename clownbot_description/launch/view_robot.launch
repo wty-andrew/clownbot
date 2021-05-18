@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find clownbot_description)/launch/robot_state.launch"/>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find clownbot_description)/rviz/urdf.rviz"/>
+</launch>

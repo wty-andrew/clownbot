@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="base_height" value="0.06"/>
+  <xacro:property name="base_radius" value="0.15"/>
+  <xacro:property name="base_mass" value="5"/>
+
+  <xacro:macro name="base" params="name parent *origin">
+    <joint name="${parent}_to_${name}" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <link name="${name}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://clownbot_description/meshes/base.dae"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="${base_height}" radius="${base_radius}"/>
+        </geometry>
+      </collision>
+
+      <xacro:cylinder_inertia m="${base_mass}" r="${base_radius}" h="${base_height}"/>
+    </link>
+  </xacro:macro>
+</robot>

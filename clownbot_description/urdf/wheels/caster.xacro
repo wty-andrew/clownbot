@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="caster_radius" value="0.00635"/>
+  <xacro:property name="caster_mass" value="0.01"/>
+
+  <xacro:macro name="caster" params="name parent *origin">
+    <joint name="${parent}_to_${name}" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <link name="${name}">
+      <visual>
+        <origin xyz="0 0 ${caster_radius - 0.001}" rpy="0 ${PI} ${HALF_PI}"/>
+        <geometry>
+          <mesh filename="package://clownbot_description/meshes/caster.dae"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <geometry>
+          <sphere radius="${caster_radius}"/>
+        </geometry>
+      </collision>
+
+      <xacro:sphere_inertia m="${caster_mass}" r="${caster_radius}"/>
+    </link>
+  </xacro:macro>
+</robot>
