@@ -2,9 +2,13 @@
 <launch>
   <env name="GAZEBO_MODEL_PATH" value="$(find clownbot_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)"/>
 
-  <arg name="gui" default="true" />
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_a" default="0.0"/>
+
+  <arg name="gui" default="true"/>
   <arg name="debug" default="false"/>
-  <arg name="world" default="empty"/>
+  <arg name="world_file" default="$(find clownbot_gazebo)/worlds/empty.world"/>
 
   <include file="$(find clownbot_description)/launch/robot_state.launch"/>
 
@@ -12,9 +16,9 @@
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="$(arg gui)" />
     <arg name="debug" value="$(arg debug)"/>
-    <arg name="world_name" value="$(find clownbot_gazebo)/worlds/$(arg world).world"/>
+    <arg name="world_name" value="$(arg world_file)"/>
   </include>
 
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"
-        args="-param robot_description -urdf -model clownbot" />
+        args="-param robot_description -urdf -model clownbot -x $(arg initial_pose_x) -y $(arg initial_pose_y) -Y $(arg initial_pose_a)"/>
 </launch>

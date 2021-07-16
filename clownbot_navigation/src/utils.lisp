@@ -1,6 +1,6 @@
 (uiop:define-package #:clownbot-navigation/utils
   (:use #:cl #:roslisp #:cl-transforms)
-  (:export #:sign
+  (:export #:sign #:copy-sign
            #:degree->radian #:radian->degree
            #:angular-dist #:yaw
            #:make-2d-twist
@@ -13,6 +13,9 @@
   (cond ((plusp num) 1)
         ((zerop num) 0)
         (t -1)))
+
+(defun copy-sign (x y)
+  (* x (sign y)))
 
 (defun degree->radian (degree)
   (/ (* degree pi) 180))
