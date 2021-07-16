@@ -1,0 +1,59 @@
+<launch>
+  <arg name="map_file" default="$(find turtlebot3_navigation)/maps/map.yaml"/>
+  <arg name="world_file" default="$(find clownbot_gazebo)/worlds/turtlebot3.world"/>
+
+  <arg name="initial_pose_x" default="-2.0"/>
+  <arg name="initial_pose_y" default="-0.5"/>
+  <arg name="initial_pose_a" default="0.0"/>
+
+  <!-- Gazebo -->
+  <include file="$(find clownbot_gazebo)/launch/simulation.launch">
+    <arg name="world_file" value="$(arg world_file)"/>
+
+    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+  </include>
+
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- Fake AMCL -->
+  <node pkg="fake_localization" type="fake_localization" name="fake_localization">
+    <remap from="base_pose_ground_truth" to="odom"/>
+  </node>
+
+  <!-- Global Planner -->
+  <node pkg="global_planner" type="planner" name="planner_node" output="screen">
+    <rosparam param="planner">
+      allow_unknown: false
+      default_tolerance: 0.0
+      visualize_potential: false
+      use_dijkstra: true
+      use_quadratic: true
+      use_grid_path: false
+      old_navfn_behavior: false
+      neutral_cost: 35
+      cost_factor: 5
+    </rosparam>
+
+    <rosparam param="costmap">
+      robot_radius: 0.15
+
+      global_frame: map
+      robot_base_frame: base_link
+
+      plugins:
+        - { name: static_layer, type: "costmap_2d::StaticLayer" }
+        - { name: inflation_layer, type: "costmap_2d::InflationLayer" }
+
+      inflation_layer: {
+        inflation_radius: 0.55,
+        cost_scaling_factor: 10,
+      }
+    </rosparam>
+  </node>
+
+  <!-- Rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find clownbot_navigation)/rviz/default.rviz"/>
+</launch>

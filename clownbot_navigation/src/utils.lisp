@@ -1,8 +1,8 @@
 (uiop:define-package #:clownbot-navigation/utils
   (:use #:cl #:roslisp #:cl-transforms)
-  (:export #:sign
+  (:export #:sign #:copy-sign
            #:degree->radian #:radian->degree
-           #:angular-dist #:yaw
+           #:angular-dist
            #:make-2d-twist
            #:distance))
 
@@ -14,6 +14,9 @@
         ((zerop num) 0)
         (t -1)))
 
+(defun copy-sign (x y)
+  (* x (sign y)))
+
 (defun degree->radian (degree)
   (/ (* degree pi) 180))
 
@@ -24,12 +27,6 @@
 (defun angular-dist (from to)
   "Return the smaller difference between two angles"
   (normalize-angle (- to from)))
-
-(defun yaw (quaternion)
-  "Retrieve the yaw angle from the given quaternion"
-  (with-slots (x y z w) quaternion
-    (atan (* 2 (+ (* x y) (* w z)))
-          (- (+ (* w w) (* x x)) (+ (* y y) (* z z))))))
 
 (defun make-2d-twist (linear-vel angular-vel)
   (make-twist (make-3d-vector linear-vel 0 0)
