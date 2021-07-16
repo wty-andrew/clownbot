@@ -18,6 +18,4 @@
                                     :start (pose->pose-stamped-msg start-pose)
                                     :goal (pose->pose-stamped-msg goal-pose)))
       (when (= plan_found 1)
-        (map 'list (lambda (pose-stamped)
-                     (pose-stamped->pose (from-msg pose-stamped)))
-             path)))))
+        (map 'list #'from-msg path)))))

@@ -21,13 +21,16 @@
 (defparameter *lookahead-dist* 0.5)
 (defparameter *max-angular-vel* 0.3)
 
-(defun prune-plan (plan &optional (lookahead-dist *lookahead-dist*))
-  "Returns a new plan that removes the first few poses that are within
-lookahead-dist, if all poses are within the distance, keep only the last pose"
-  (or (member-if (lambda (pose)
-                   (> (v-norm (origin pose)) lookahead-dist))
-                 plan)
-      (last plan)))
+(defun prune-plan (init-pose plan)
+  "Return a new plan that removes the first few poses if there is a later pose
+closer to the the robot"
+  (let ((prev-dist most-positive-single-float))
+    (loop for curr-pose in plan
+          for i from 0
+          for curr-dist = (distance curr-pose init-pose)
+          until (> curr-dist prev-dist)
+          do (setf prev-dist curr-dist)
+          finally (return (nthcdr (max (1- i) 0) plan)))))
 
 (defun motion-model (pose linear-vel angular-vel dt)
   "Calculate next pose based on differential drive robot model"

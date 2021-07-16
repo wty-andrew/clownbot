@@ -102,12 +102,9 @@
   (publish (get-global-plan-pub)
            (make-message "nav_msgs/Path"
                          (:frame_id :header) *global-frame*
-                         :poses (map 'vector (lambda (pose)
-                                               (to-msg (pose->pose-stamped *global-frame* 0 pose)))
-                                     plan))))
+                         :poses (map 'vector #'to-msg plan))))
 
 (defun publish-local-plan (plan)
-  "Publish the current following target"
   (publish (get-local-plan-pub)
            (make-message "geometry_msgs/PoseArray"
                          (:frame_id :header) *robot-base-frame*
